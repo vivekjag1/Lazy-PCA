@@ -1,0 +1,26 @@
+Learning:
+    PCA power iteration implementation
+
+Written code:
+    Original PCA implementation
+    Modified Lazy PCA
+    Embedding pipeline
+    Classifier structure/surrounding shebacle
+
+Imported code:
+    Naive Bayes classifier (sklearn)
+    Embedding model (Huggingface)
+        CLIP, SBERT, something?
+
+
+
+
+Deadlines:
+    4/6: PCA Power Iteration learning (All)
+         Embedding pipeline (Chris)
+    4/10: Normal PCA implementation (Vivek) - maybe by the 6th
+          Naive Bayes classifier from sklearn (Aksel)
+    4/21: Lazy PCA implementation (Chris/all)
+
+    4/30: Report and presentation written up/ready (all)
+
