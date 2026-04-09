@@ -5,7 +5,7 @@ NUM_ITERATIONS = 2000
 EPSILON = 1e-6 
 
 # this will need to be tuned 
-NUM_COMPONENTS = 3
+NUM_COMPONENTS = 2
 
 # power iteration to find a single component. 
 def power_iteration(X):
