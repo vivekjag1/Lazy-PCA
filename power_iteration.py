@@ -9,19 +9,21 @@ NUM_COMPONENTS = 50
 
 
 class PowerIteration(): 
-    def __init__(self, num_iterations, epsilon, num_components, features): 
+    '''
+    Class for using power iteration to get PCA components 
+    '''
+    def __init__(self, num_components=50, num_iterations=200, epsilon=1e-6): 
         self.num_iterations = num_iterations
         self.epsilon = epsilon
         self.num_components = num_components
-        self.features = features
 
 
 
     # power iteration to find a single component. 
-    def power_iteration_single_iteration(self):
+    def power_iteration_single_iteration(self, X):
 
         # find M (this is just XTX). Instead of repeatedly finding M, determine it once at the top of the function 
-        M = self.features.T @ self.features
+        M = X.T @ X
 
         # find random vector V in the shpe of M 
         rng = np.random.default_rng()
@@ -56,7 +58,7 @@ class PowerIteration():
         return v_prev
 
     # iterative function 
-    def power_iteration(self): 
+    def power_iteration(self, X): 
 
         # component list 
         components = []
@@ -65,13 +67,23 @@ class PowerIteration():
         for i in range(self.num_components): 
 
             # find the next component
-            components.append(self.power_iteration_single_iteration())
+            components.append(self.power_iteration_single_iteration(X))
             w = components[i]
 
             # remove the component we just found from the data
 
-            self.features = self.features - np.outer(self.features @ w, w)
+            X = X - np.outer(X @ w, w)
         return components
+    
+    def fit_transform(self, X):
+        '''
+        finds the top k components and returns (xform_data, comps) as a tuple
+        '''
+
+        comps = np.array(self.power_iteration(X))
+        xform_data = X.dot(comps.T)
+
+        return (xform_data,comps)
 
 
 if __name__ == "__main__": 
